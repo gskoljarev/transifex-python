@@ -39,8 +39,7 @@ class Command(BaseCommand):
 
         subparsers = parser.add_subparsers(title="subcommands",
                                            dest="subcommand",
-                                           help="Available subcommands",
-                                           parser_class=SubParser)
+                                           help="Available subcommands")
         subparsers.required = True
 
         for subcommand in self.subcommands.values():
