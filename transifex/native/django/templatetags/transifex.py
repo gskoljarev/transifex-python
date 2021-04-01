@@ -2,13 +2,20 @@ from __future__ import absolute_import, unicode_literals
 
 from copy import copy
 
+try:
+    from django.template.base import TokenType
+    TOKEN_BLOCK = TokenType.BLOCK
+    TOKEN_TEXT = TokenType.TEXT
+    TOKEN_VAR = TokenType.VAR
+    TOKEN_COMMENT = TokenType.COMMENT
+except ImportError:
+    from django.template.base import TOKEN_BLOCK, TOKEN_TEXT, TOKEN_VAR, TOKEN_COMMENT
+
 from django.conf import settings
 from django.template import Library, Node, TemplateSyntaxError
 from django.template.base import (BLOCK_TAG_END, BLOCK_TAG_START,
                                   COMMENT_TAG_END, COMMENT_TAG_START,
-                                  TOKEN_BLOCK, TOKEN_COMMENT, TOKEN_TEXT,
-                                  TOKEN_VAR, VARIABLE_TAG_END,
-                                  VARIABLE_TAG_START)
+                                  VARIABLE_TAG_END, VARIABLE_TAG_START)
 from django.template.defaulttags import token_kwargs
 from django.utils.html import escape as escape_html
 from django.utils.safestring import EscapeData, SafeData, mark_safe
