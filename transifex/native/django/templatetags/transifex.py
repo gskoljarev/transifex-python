@@ -17,6 +17,7 @@ from django.template.base import (BLOCK_TAG_END, BLOCK_TAG_START,
                                   COMMENT_TAG_END, COMMENT_TAG_START,
                                   VARIABLE_TAG_END, VARIABLE_TAG_START)
 from django.template.defaulttags import token_kwargs
+from django.utils import six
 from django.utils.html import escape as escape_html
 from django.utils.safestring import SafeData, mark_safe
 from django.utils.translation import get_language, to_locale
