@@ -6,8 +6,16 @@ https://docs.djangoproject.com/en/1.11/topics/i18n/translation/
 
 from __future__ import unicode_literals
 
-from django.template.base import (TOKEN_BLOCK, TOKEN_COMMENT, TOKEN_TEXT,
-                                  TOKEN_VAR, TRANSLATOR_COMMENT_MARK,
+try:
+    from django.template.base import TokenType
+    TOKEN_BLOCK = TokenType.BLOCK
+    TOKEN_TEXT = TokenType.TEXT
+    TOKEN_VAR = TokenType.VAR
+    TOKEN_COMMENT = TokenType.COMMENT
+except ImportError:
+    from django.template.base import TOKEN_BLOCK, TOKEN_TEXT, TOKEN_VAR, TOKEN_COMMENT
+
+from django.template.base import (TRANSLATOR_COMMENT_MARK,
                                   DebugLexer, Parser)
 from django.template.defaulttags import token_kwargs
 from django.templatetags.i18n import do_block_translate, do_translate
