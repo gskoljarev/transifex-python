@@ -31,12 +31,6 @@ class Command(BaseCommand):
                             'try-templatetag': TryTemplatetag()}
 
     def add_arguments(self, parser):
-        cmd = self
-
-        class SubParser(CommandParser):
-            def __init__(self, **kwargs):
-                super(SubParser, self).__init__(cmd, **kwargs)
-
         # common arguments to all subcommands
         parser.add_argument(
             '--domain', '-d', default='django', dest='domain',
