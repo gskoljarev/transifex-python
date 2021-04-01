@@ -18,12 +18,30 @@ from django.template.base import (BLOCK_TAG_END, BLOCK_TAG_START,
                                   VARIABLE_TAG_END, VARIABLE_TAG_START)
 from django.template.defaulttags import token_kwargs
 from django.utils.html import escape as escape_html
-from django.utils.safestring import EscapeData, SafeData, mark_safe
+from django.utils.safestring import SafeData, mark_safe
 from django.utils.translation import get_language, to_locale
 from transifex.common._compat import string_types
 from transifex.native import tx
 
 register = Library()
+
+
+class EscapeData(object):
+    pass
+
+
+class EscapeBytes(bytes, EscapeData):
+    """
+    A byte string that should be HTML-escaped when output.
+    """
+    pass
+
+
+class EscapeText(six.text_type, EscapeData):
+    """
+    A unicode string object that should be HTML-escaped when output.
+    """
+    pass
 
 
 def do_t(parser, token):
