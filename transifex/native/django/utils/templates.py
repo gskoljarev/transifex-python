@@ -1,6 +1,14 @@
 from __future__ import unicode_literals
 
-from django.template.base import TOKEN_BLOCK, Lexer, Parser
+try:
+    from django.template.base import TokenType
+    TOKEN_BLOCK = TokenType.BLOCK
+    TOKEN_TEXT = TokenType.TEXT
+    TOKEN_VAR = TokenType.VAR
+except ImportError:
+    from django.template.base import TOKEN_BLOCK, TOKEN_TEXT, TOKEN_VAR
+
+from django.template.base import Lexer, Parser
 from django.utils.encoding import force_text
 from transifex.common._compat import string_types
 from transifex.native.django.templatetags.transifex import do_t
